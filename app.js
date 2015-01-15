@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 
-var status = require('./routes/status');
+var state = require('./routes/pistate');
 var processes = require('./routes/processes');
 var auth = require('./routes/auth');
 
@@ -36,7 +36,8 @@ app.use(lessMiddleware( path.join(__dirname, 'less') , {// options
 );
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/status', status);
+app.use('/', state);
+app.use('/pistate', state);
 app.use('/processes', processes);
 
 // catch 404 and forward to error handler

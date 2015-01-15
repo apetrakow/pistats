@@ -12,8 +12,12 @@ var getStatus = function(res,view,dataObj) {
     res.render(view, dataObj);
 }
 
+router.get('/', function(req, res) {
+    res.redirect('/pistate');
+});
+
 /* GET home page. */
-router.get('/status', function(req, res) {
+router.get('/pistate', function(req, res) {
     getStatus(res, 'actions/status', {
         title: 'ArchiPi :: Status',
         siteTitle: 'Archi Pi',
