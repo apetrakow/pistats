@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 
-var routes = require('./routes/status');
+var status = require('./routes/status');
 var processes = require('./routes/processes');
 var auth = require('./routes/auth');
 
@@ -24,7 +24,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Authenticate for usage:
-//app.use(auth); // Auth
+// app.use('PATH', auth.basicAuth('user','password'));
+// .gitignore!!
+app.use('/', auth.basicAuth('user', 'password'));
 
 // source, options, parserOptions, compilerOptions
 app.use(lessMiddleware( path.join(__dirname, 'less') , {// options
@@ -34,7 +36,7 @@ app.use(lessMiddleware( path.join(__dirname, 'less') , {// options
 );
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/status', status);
 app.use('/processes', processes);
 
 // catch 404 and forward to error handler

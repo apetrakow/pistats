@@ -13,7 +13,7 @@ var getStatus = function(res,view,dataObj) {
 }
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/status', function(req, res) {
     getStatus(res, 'actions/status', {
         title: 'ArchiPi :: Status',
         siteTitle: 'Archi Pi',
