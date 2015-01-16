@@ -52,32 +52,30 @@ if(socket != 'undefined') {
             if(data.msg) console.log(data.msg);
         })
     ;
-}
 
-$(document).ready( function(){
 
-    if(socket != 'undefined'){
+    $(document).ready( function(){
 
         var process_actions = $('.process a.label');
         process_actions.each(function(){
             var t = $(this);
+            var p = t.attr('data-process');
+            var a = t.attr('data-action');
 
             t.click(function(e){
                 e.preventDefault();
-
-                if(t.attr('data-action') == 'restart' || t.attr('data-action') == 'stop' && process_state[t.attr('data-process')] !== 'undefined'){
-                    process_state[t.attr('data-process')].stop();
+                if(a == 'restart' || a == 'stop' && process_state[p] !== 'undefined'){
+                    console.log(process_state[p], p);
+                    process_state[p].stop();
                 }
-
-                socket.emit('pm2-'+t.attr('data-action'), {name:t.attr('data-process')});
-
+                socket.emit('pm2-'+a, {name:p});
             });
 
-            process_state[t.attr('data-action')] = new Updater(30, 'pm2-update', {name:t.attr('data-action')});
-            process_state[t.attr('data-action')].stop();
+            process_state[p] = new Updater(30, 'pm2-update', {name:p});
+            process_state[p].stop();
 
         });
 
-    }
+    } );
 
-} );
+}

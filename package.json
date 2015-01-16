@@ -1,11 +1,13 @@
 {
   "name": "pistats",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "schnubb",
   "repository":{
       "type":"git",
       "url": "https://github.com/schnubb/pistats"
   },
+  "bugs" : "https://github.com/schnubb/pistats/issues",
+  "contributors" : "https://github.com/schnubb/pistats/graphs/contributors",
   "description": "WebApp for my Raspberry Pi with Archlinux for Process Management and Host-Status-Overview.",
   "private": true,
   "readmeFilename": "README.md",

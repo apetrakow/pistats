@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-var debug = require('debug')( process.env.DOMAIN || 'example.com');
-var app = require('../app');
-var sm = require('../routes/sockets');
+var conf    = require('../config')._default;
+var debug   = require('debug')( process.env.DOMAIN || conf.DOMAIN);
+var app     = require('../app');
+var sm      = require('../routes/sockets');
 
-app.set('port', process.env.PORT || 3344);
-console.log(process.env.PORT, process.env.DOMAIN);
+app.set('port', process.env.PORT || conf.PORT);
+
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });

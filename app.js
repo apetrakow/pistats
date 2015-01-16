@@ -1,3 +1,5 @@
+
+var conf = require('./config')._default;
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,10 +7,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
-
+var utils = require('./routes/utils');
+// Load Routs
 var state = require('./routes/pistate');
 var processes = require('./routes/processes');
-var auth = require('./routes/auth');
 
 var app = express();
 
@@ -26,7 +28,7 @@ app.use(cookieParser());
 // Authenticate for usage:
 // app.use('PATH', auth.basicAuth('user','password'));
 // .gitignore!!
-app.use('/', auth.basicAuth('user', 'password'));
+app.use('/', utils.basicAuth(conf.basicAuth.user, conf.basicAuth.pass));
 
 // source, options, parserOptions, compilerOptions
 app.use(lessMiddleware( path.join(__dirname, 'less') , {// options
