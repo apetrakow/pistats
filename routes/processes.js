@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
             if(err) throw new Error(err);
 
             plist = process_list;
-            for(proc in plist) {
+            for(var proc in plist) {
                 plist[proc].monit.memory = parseInt(plist[proc].monit.memory / 1048576) + " MB";
             }
 
