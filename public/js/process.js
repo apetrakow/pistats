@@ -40,10 +40,20 @@ if(socket != 'undefined') {
         })
         .on('p-state', function(data){
             $('.process.' + data.name + ' td:first-child').text(data.status);
-            if(data.status === 'offline') { $('.process.' + data.name).removeProp("class").addClass("danger", "process", data.name); } else
-            if(data.status === 'online') { $('.process.' + data.name).removeProp("class").addClass("success", "process", data.name); } else
-            {
-                $('.process.'+data.name).removeProp('class').addClass("primary", "process", data.name);
+            if(data.status === 'offline') {
+              $('.process.' + data.name)
+                .removeProp("class")
+                .addClass("danger", "process", data.name);
+              
+            } else if(data.status === 'online') {
+              $('.process.' + data.name)
+                .removeProp("class")
+                .addClass("success", "process", data.name);
+              
+            } else {
+                $('.process.'+data.name)
+                  .removeProp('class')
+                  .addClass("primary", "process", data.name);
             }
 
             if(data.restarts) $('.process.' + data.name + ' td:first-child + td').text(data.restarts);
