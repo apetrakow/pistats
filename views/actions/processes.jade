@@ -1,0 +1,51 @@
+extends ../main
+
+mixin showrow(p)
+    td=p.pm2_env.status
+    td=p.pm2_env.restart_time
+    td
+        a(href='#', title="Restart Process", class="label label-warning", data-process=p.pm2_env.name, data-action="restart")
+            span.glyphicon.glyphicon-refresh
+        a(href="#", title="Stop Process", class="label label-danger", data-process=p.pm2_env.name, data-action="stop")
+            span.glyphicon.glyphicon-remove-circle
+        a(href="#", title="Reset Stats", class="label label-success", data-process=p.pm2_env.name, data-action="reset")
+            span.glyphicon.glyphicon-download-alt
+    td=p.name
+    td=p.monit.memory
+
+block content
+
+    .container
+        if content
+            table.table.table-condensed
+                thead
+                    tr
+                        th Status
+                        th Restarts
+                        th Actions
+                        th Name
+                        th Memory Usage
+                tbody
+                    each process, index in content
+                        case process.pm2_env.status
+                            when 'online'
+                                tr(class="success process "+process.name)
+                                    +showrow(process)
+                            default
+                                tr(class="danger process "+process.name)
+                                    +showrow(process)
+        else
+            .col-sm-2 Keine Prozesse aktiv?
+
+    .container
+        ul.nav
+            li
+                a(href="#", title="Neuen Prozess starten")
+
+//
+    .container
+        if content
+            each process in content
+                .row
+                    each p,i in process.pm2_env
+                        .col-sm-2=i + '::' + p

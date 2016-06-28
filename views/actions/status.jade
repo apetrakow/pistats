@@ -1,0 +1,19 @@
+extends ../main
+
+block content
+    .container
+        p Short overview:
+        table.table.table-striped
+            tr
+                td Uptime:
+                td Total Mem:
+                td Load:
+            tr
+                td#uptime since #{uptime}
+                td#memory #{free} / #{memory}
+                td#cpu
+                    if load.length > 1
+                        each cur in load
+                            code=cur
+                    else
+                        #{load}

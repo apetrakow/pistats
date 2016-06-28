@@ -1,0 +1,26 @@
+extends layout
+
+block head
+    .container-fluid.btn-primary.page-header
+        .row
+            .col-lg-12.text-center
+                span.glyphicon.glyphicon-bell
+                h1=#{title}
+
+block content
+    .container
+        p Short overview:
+        table.table.table-striped
+            tr
+                td Uptime:
+                td Total Mem:
+                td Load:
+            tr
+                td since #{uptime}
+                td #{free} / #{memory}
+                td #{load}
+
+block foot
+    .container-fluid
+        .row
+            .col-lg-12.btn-primary

@@ -1,0 +1,23 @@
+mixin menuItem(href, linkClass, val)
+    if block
+        block
+    else
+        li(class!=attributes.class)
+            a(href=href)=val
+
+block foot
+    .container-fluid
+        .row
+            .col-lg-12
+                .container
+                    .col-lg-12
+                        ul.nav.nav-pills
+                            if status
+                                +menuItem("/", "", "Pi Status")(class="active")
+                            else
+                                +menuItem("/", "", "Pi Status")
+
+                            if proc
+                                +menuItem("/processes", "", "Alle PM2 Prozesse anzeigen")(class="active")
+                            else
+                                +menuItem("/processes", "", "Alle PM2 Prozesse anzeigen")
